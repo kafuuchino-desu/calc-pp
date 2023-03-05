@@ -1,6 +1,6 @@
 from mcdreforged.api.all import *
 
-from simple_calculator.calculator import Calculator, SimpleevalCalculator, NaiveCalculator
+from simple_calculator.calculator import AdvancedCalculator
 from simple_calculator.configure import Configure
 
 config = Configure.get_default()
@@ -44,10 +44,7 @@ def on_user_info(server: PluginServerInterface, info: Info):
 def on_load(server: PluginServerInterface, old):
 	global config, calculator
 	config = server.load_config_simple(target_class=Configure)
-	if config.enable_simpleeval:
-		calculator = SimpleevalCalculator(config)
-	else:
-		calculator = NaiveCalculator(config)
+	calculator = AdvancedCalculator(config)
 	server.logger.info('Used {} for calculation'.format(calculator.__class__.__name__))
 	server.register_help_message('==<expression>', server.rtr('simple_calculator.help'))
 

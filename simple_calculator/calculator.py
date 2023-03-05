@@ -30,18 +30,7 @@ class Calculator(ABC):
 		raise NotImplementedError()
 
 
-class NaiveCalculator(Calculator):
-	def _calculate(self, expression: str) -> Optional[RESULT]:
-		whitelist = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ', '.', '+', '-', '*', '/', '(', ')', '<', '>', '=']
-		expression = expression.replace('**', '')  # to avoid eeasee, no power operator
-		text_clean = ''
-		for c in expression:
-			if c in whitelist:
-				text_clean += c
-
-		if len(text_clean) == 0:
-			return None
-		return eval(text_clean)
+class AdvancedCalculator(Calculator):
 
 
 class SimpleevalCalculator(Calculator):
