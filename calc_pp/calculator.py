@@ -11,6 +11,9 @@ from calc_pp.variables import varTypes, varsProvider
 
 RESULT = Union[int, float, str, bool]
 operators = ["+", "-", "*", "/", "(", ")"]
+#sizes of chests and shulkers (in grids, W*H)
+sizeChest = 9*6
+sizeShulker = 9*3
 
 
 class Calculator(ABC):
@@ -37,8 +40,10 @@ class advancedCalculator(Calculator):
 		super().__init__(config)
 		self.evalCalc = SimpleevalCalculator(config)
 		self.vars = varsProvider()
-		#putting the max depth in secret variable, hack me ;-P
+		#putting in some secret variables, hack me ;-P
 		self.vars.set("_MAX_DEPTH", varTypes.CONSTANT, config.max_depth)
+		self.vars.set("_STACK_SHULKERS", varTypes.CONSTANT, config.stack_shulkers)
+		self.vars.set("_STACK_BASE", varTypes.CONSTANT, 64)
 
 	def _calculate(self, expression: str) -> Optional[RESULT]:
 		'''
@@ -58,13 +63,53 @@ class advancedCalculator(Calculator):
 				self.vars.set(vName, varTypes.EXPRESSION, value)
 			else:
 				self.vars.set(vName, varTypes.CONSTANT, value)
-			return str(vName + ": " + value)
+			return str(vName + ": " + str(value))
 
+		#get method
 		elif expression.startswith("get "):
 			expression = expression.replace("get ", "")
-			vName = expression
+			vName = expression.replace("$", "")
 			vType, value = self.vars.get(vName)
-			return str(vName + ": " + value)
+			return str(vName + ": " + str(value))
+
+		#stack calculator
+		elif expression.startswith("stack "):
+			expression = expression.replace("stack ", "")
+			result = self.solve(expression, depth)
+			uselessType, stackSize = self.vars.get("_STACK_BASE")
+			stackSize = int(stackSize)
+			uselessType, stackShulkers = self.vars.get("_STACK_SHULKERS")
+			chestCount, shulkerCount, stackCount = 0, 0, 0
+			if stackShulkers == 1:
+				chestCount = result//(sizeChest * sizeShulker * stackSize)
+				print(chestCount)
+				result -= chestCount * sizeChest * sizeShulker * stackSize
+				shulkerCount = result//(sizeShulker * stackSize)
+				result -= shulkerCount * sizeShulker * stackSize
+				stackCount = result//stackSize
+				result -= stackCount * stackSize
+			else:
+				chestCount = result//(sizeChest * stackSize)
+				result -= chestCount * sizeChest * stackSize
+				stackCount = result//stackSize
+				result -= stackCount * stackSize
+
+			#build the output string
+			string = ""
+			if chestCount > 0:
+				string += str(chestCount) + "DC "
+				if stackShulkers == 1:
+					string += "shulkers "
+			if shulkerCount > 0:
+				string += str(shulkerCount) + "shulkers "
+			if stackCount > 0:
+				string += str(stackCount) + "stack "
+			if result > 0:
+				string += str(result) + "items"
+			#adding extra info
+			string += f"(stacksize:{stackSize})"
+			return string
+
 		else:
 			result = self.solve(expression, depth)
 			self.vars.set("", varTypes.CONSTANT, result)
