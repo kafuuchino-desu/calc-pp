@@ -21,7 +21,7 @@ class varsProvider(object):
 		else:
 			#creates the key if it's not in the dictionary
 			if keyStr not in self.dict:
-				self.dict[key] = {}
+				self.dict[keyStr] = {}
 
 			self.dict[keyStr][keyIndex] = {"type" : type, "value" : value}
 
@@ -39,7 +39,7 @@ class varsProvider(object):
 			value = self.dict[keyStr][keyIndex]["value"]
 			return type, value
 		else:
-			raise ValueError
+			raise ValueError("Not Found: " + key)
 
 	def clear(self):
 		self.dict = {}
