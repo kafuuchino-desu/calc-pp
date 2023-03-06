@@ -1,6 +1,6 @@
 {
 	"id": "calc_pp",
-	"version": "0.9",
+	"version": "0.9.1",
 	"name": "calculator-plusplus",
 	"description": {
 		"en_us": "Calculator with advanced features",
