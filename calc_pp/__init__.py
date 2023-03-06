@@ -1,7 +1,7 @@
 from mcdreforged.api.all import *
 
-from simple_calculator.calculator import advancedCalculator
-from simple_calculator.configure import Configure
+from calc_pp.calculator import advancedCalculator
+from calc_pp.configure import Configure
 
 config = Configure.get_default()
 

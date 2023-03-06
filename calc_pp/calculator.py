@@ -6,8 +6,8 @@ from typing import Optional, Union
 
 import simpleeval
 
-from simple_calculator.configure import Configure
-from simple_calculator.variables import varTypes, varsProvider
+from calc_pp.configure import Configure
+from calc_pp.variables import varTypes, varsProvider
 
 RESULT = Union[int, float, str, bool]
 operators = ["+", "-", "*", "/", "(", ")"]

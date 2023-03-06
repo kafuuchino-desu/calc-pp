@@ -1,19 +1,20 @@
 {
-	"id": "simple_calculator",
-	"version": "1.2.0",
-	"name": "Simple in-game calculator",
+	"id": "calc_pp",
+	"version": "0.9",
+	"name": "calculator-plusplus",
 	"description": {
-		"en_us": "A Simple in-game calculator",
-		"zh_cn": "一个简单的游戏内计算器"
+		"en_us": "Calculator with advanced features",
+		"zh_cn": "具有高级特性的计算器"
 	},
 	"author": [
-		"Fallen_Breath"
+		"Fallen_Breath",
+		"chino_desu"
 	],
 	"dependencies": {
 		"mcdreforged": ">=2.1.0-beta"
 	},
-	"link": "https://github.com/TISUnion/Calculator",
-	"archive_name": "SimpleCalculator-v{version}",
+	"link": "https://github.com/kafuuchino-desu/calc-pp",
+	"archive_name": "calcpp-v{version}",
 	"resources": [
 		"lang",
 		"LICENSE"
