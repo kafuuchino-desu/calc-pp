@@ -157,13 +157,3 @@ class SimpleevalCalculator(Calculator):
 
 	def _calculate(self, expression: str) -> Optional[RESULT]:
 		return self.core.eval(expression)
-
-if __name__ == '__main__':
-	a = advancedCalculator(Configure)
-	print(a.parseVariables("$test+123-456+$test01-$asdf"))
-	print(a.parseVariables("sin($test)"))
-	print(a.calculate("123 + 321"))
-	print(a.calculate("pi"))
-	a.vars.set("test", varTypes.CONSTANT, 114)
-	print(a.vars.get("test"))
-	print(a.calculate("$test+514"))
