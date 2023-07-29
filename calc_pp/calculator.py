@@ -41,9 +41,9 @@ class advancedCalculator(Calculator):
 		self.evalCalc = SimpleevalCalculator(config)
 		self.vars = varsProvider()
 		#putting in some secret variables, hack me ;-P
-		self.vars.set("_MAX_DEPTH", varTypes.CONSTANT, config.max_depth)
-		self.vars.set("_STACK_SHULKERS", varTypes.CONSTANT, config.stack_shulkers)
-		self.vars.set("_STACK_BASE", varTypes.CONSTANT, 64)
+		self.vars.set("_MAXDEPTH", varTypes.CONSTANT, config.max_depth)
+		self.vars.set("_STACKSHULKERS", varTypes.CONSTANT, config.stack_shulkers)
+		self.vars.set("_STACKBASE", varTypes.CONSTANT, 64)
 
 	def _calculate(self, expression: str) -> Optional[RESULT]:
 		'''
@@ -76,9 +76,9 @@ class advancedCalculator(Calculator):
 		elif expression.startswith("stack "):
 			expression = expression.replace("stack ", "")
 			result = self.solve(expression, depth)
-			uselessType, stackSize = self.vars.get("_STACK_BASE")
+			uselessType, stackSize = self.vars.get("_STACKBASE")
 			stackSize = int(stackSize)
-			uselessType, stackShulkers = self.vars.get("_STACK_SHULKERS")
+			uselessType, stackShulkers = self.vars.get("_STACKSHULKERS")
 			chestCount, shulkerCount, stackCount = 0, 0, 0
 			if stackShulkers == 1:
 				chestCount = result//(sizeChest * sizeShulker * stackSize)
@@ -163,7 +163,7 @@ class advancedCalculator(Calculator):
 		return varList
 
 	def getMaxDepth(self):
-		uselessType, depth = self.vars.get("_MAX_DEPTH")
+		uselessType, depth = self.vars.get("_MAXDEPTH")
 		return depth
 
 

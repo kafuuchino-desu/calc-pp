@@ -39,7 +39,7 @@ just use `==stack (expression)` , explains itself.
 <summary>HACKY STUFF</summary>
 <br>
 there's some internal variables for you guys to play with:<br>
-`_MAX_DEPTH`: maximum call depth for a expression, prevents endless looping<br>
-`_STACK_SHULKERS`: use shulker boxes for stack calculator? set to 0 to disable shulker boxes in stack calculator, basically made for myself playing GT:NH(very hardcore tech pack on 1.7.10, absolutely recommended for you guys if you want to take a break from technical minecraft)<br>
-`_STACK_BASE`: in case you want to calculate items that is not 64 stacked like enderpearls, or even snowballs ig?<br>
+`_MAXDEPTH`: maximum call depth for a expression, prevents endless looping<br>
+`_STACKSHULKERS`: use shulker boxes for stack calculator? set to 0 to disable shulker boxes in stack calculator, basically made for myself playing GT:NH(very hardcore tech pack on 1.7.10, absolutely recommended for you guys if you want to take a break from technical minecraft)<br>
+`_STACKBASE`: in case you want to calculate items that is not 64 stacked like enderpearls, or even snowballs ig?<br>
 </details>
