@@ -54,6 +54,9 @@ class advancedCalculator(Calculator):
 		'''
 		depth = 0
 
+		#convert ^ to actual ^
+		expression = expression.replace("^","**")
+
 		#set method
 		if expression.startswith("set "):
 			expression = expression.replace("set ", "")
